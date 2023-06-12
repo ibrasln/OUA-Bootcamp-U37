@@ -6,10 +6,10 @@ Takım U-37
 
 ## Takım Elemanları
 
-- İbrahim Aslan: Product Owner
-- Dilruba Öner: Scrum Master
-- Çisem Ayaz: Team Member/Developer
-- Batuhan Sarı: Team Member/Developer
+- İbrahim Aslan: Product Owner / Developer
+- Dilruba Öner: Scrum Master / Developer
+- Çisem Ayaz: Developer
+- Batuhan Sarı: Developer
 
 ## Ürün İsmi
 
