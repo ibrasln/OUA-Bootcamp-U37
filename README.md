@@ -2,15 +2,14 @@
 
 Takım U-37
 
-# Ürün İle İlgili Bilgiler
-
-## Takım Elemanları
+## Takım Üyeleri
 
 - İbrahim Aslan: Product Owner / Developer
 - Dilruba Öner: Scrum Master / Developer
 - Çisem Ayaz: Developer
 - Batuhan Sarı: Developer
-
+- 
+# Ürün İle İlgili Bilgiler
 ## Ürün İsmi
 
 --Movie App--
