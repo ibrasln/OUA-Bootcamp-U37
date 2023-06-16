@@ -8,7 +8,7 @@ Takım U-37
 - Dilruba Öner: Scrum Master / Developer
 - Çisem Ayaz: Developer
 - Batuhan Sarı: Developer
-- 
+
 # Ürün İle İlgili Bilgiler
 ## Ürün İsmi
 
