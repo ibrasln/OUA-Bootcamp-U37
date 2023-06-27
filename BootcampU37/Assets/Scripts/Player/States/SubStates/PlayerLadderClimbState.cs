@@ -18,14 +18,14 @@ namespace Platformer.Player
         public override void DoChecks()
         {
             base.DoChecks();
-            onGround = player.CheckOnGround();
-            isTouchingLadder = player.CheckIsTouchingLadder();
+            onGround = core.CollisionSenses.Ground;
+            //isTouchingLadder = player.CheckIsTouchingLadder();
         }
 
         public override void Enter()
         {
             base.Enter();
-            player.SetVelocityZero();
+            core.Movement.SetVelocityZero();
             player.SetGravityScale(0);
         }
 
@@ -57,8 +57,8 @@ namespace Platformer.Player
             }
             else
             {
-                player.SetVelocityX(0);
-                player.SetVelocityY(playerData.ladderClimbSpeed * yInput);
+                core.Movement.SetVelocityX(0);
+                core.Movement.SetVelocityY(playerData.ladderClimbSpeed * yInput);
             }
         }
 

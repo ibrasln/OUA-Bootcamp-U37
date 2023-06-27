@@ -25,8 +25,8 @@ namespace Platformer.Player
         {
             base.LogicUpdate();
 
-            player.SetVelocityX(playerData.moveSpeed * xInput);
-            player.CheckIfShouldFlip(xInput);
+            core.Movement.SetVelocityX(playerData.moveSpeed * xInput);
+            core.Movement.CheckIfShouldFlip(xInput);
 
             if (xInput == 0)
                 stateMachine.ChangeState(player.IdleState);

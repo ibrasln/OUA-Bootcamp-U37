@@ -38,7 +38,7 @@ namespace Platformer.Player
             }
             else
             {
-                player.SetVelocityX(playerData.slideSpeed * player.FacingDirection);
+                core.Movement.SetVelocityX(playerData.slideSpeed * player.FacingDirection);
                 CheckIfShouldPlaceAfterImage();
             }
         }

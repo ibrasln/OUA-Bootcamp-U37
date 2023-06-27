@@ -16,7 +16,7 @@ namespace Platformer.Player
         public override void Enter()
         {
             base.Enter();
-            player.SetVelocityZero();
+            core.Movement.SetVelocityX(0);
         }
 
         public override void Exit()

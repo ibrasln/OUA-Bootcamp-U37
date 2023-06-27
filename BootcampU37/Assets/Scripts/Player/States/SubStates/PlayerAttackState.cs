@@ -10,12 +10,12 @@ namespace Platformer.Player
 
         public override void AnimationStartMovementTrigger()
         {
-            player.SetVelocityX(playerData.attackMovementSpeed * player.FacingDirection);
+            core.Movement.SetVelocityX(playerData.attackMovementSpeed * player.FacingDirection);
         }
 
         public override void AnimationStopMovementTrigger()
         {
-            player.SetVelocityZero();
+            core.Movement.SetVelocityZero();
         }
 
         public override void AnimationFinishTrigger()
@@ -28,7 +28,7 @@ namespace Platformer.Player
         {
             base.Enter();
             
-            player.SetVelocityZero();
+            core.Movement.SetVelocityZero();
 
             if (attackCounter >= playerData.attackAmount)
             {

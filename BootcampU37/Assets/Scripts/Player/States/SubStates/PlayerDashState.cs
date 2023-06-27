@@ -46,8 +46,8 @@ namespace Platformer.Player
             }
             else
             {
-                player.SetVelocityX(playerData.dashSpeed * player.FacingDirection);
-                player.SetVelocityY(0f);
+               core.Movement.SetVelocityX(playerData.dashSpeed * player.FacingDirection);
+                core.Movement.SetVelocityY(0f);
                 CheckIfShouldPlaceAfterImage();
             }
             

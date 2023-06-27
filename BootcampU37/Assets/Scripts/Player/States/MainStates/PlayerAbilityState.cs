@@ -16,7 +16,7 @@ namespace Platformer.Player
         public override void DoChecks()
         {
             base.DoChecks();
-            onGround = player.CheckOnGround();
+            onGround = core.CollisionSenses.Ground;
         }
 
         public override void Enter()

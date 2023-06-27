@@ -15,7 +15,7 @@ namespace Platformer.Player
         {
             base.Enter();
             player.InputHandler.UseJumpInput();
-            player.SetVelocityY(playerData.jumpPower);
+            core.Movement.SetVelocityY(playerData.jumpPower);
             jumpAmountLeft--;
             isAbilityDone = true;
             Debug.Log(jumpAmountLeft);

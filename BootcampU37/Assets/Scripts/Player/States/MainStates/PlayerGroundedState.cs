@@ -25,9 +25,9 @@ namespace Platformer.Player
         public override void DoChecks()
         {
             base.DoChecks();
-            onGround = player.CheckOnGround();
-            isTouchingWall = player.CheckIsTouchingWall();
-            isTouchingLadder = player.CheckIsTouchingLadder();
+            onGround = core.CollisionSenses.Ground;
+            isTouchingWall = core.CollisionSenses.WallFront;
+            //isTouchingLadder = player.CheckIsTouchingLadder();
         }
 
         public override void Enter()

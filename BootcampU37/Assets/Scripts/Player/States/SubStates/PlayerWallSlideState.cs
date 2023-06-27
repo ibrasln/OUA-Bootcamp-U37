@@ -11,13 +11,13 @@ namespace Platformer.Player
         public override void DoChecks()
         {
             base.DoChecks();
-            isFeetTouchingWall = player.CheckIsFeetTouchingWall();
+            //isFeetTouchingWall = player.CheckIsFeetTouchingWall();
         }
 
         public override void Enter()
         {
             base.Enter();
-            player.SetVelocityX(0f);
+            core.Movement.SetVelocityX(0f);
         }
 
         public override void Exit()
@@ -43,7 +43,7 @@ namespace Platformer.Player
             }
             else
             {
-                player.SetVelocityY(playerData.wallSlideSpeed);
+                core.Movement.SetVelocityY(playerData.wallSlideSpeed);
             }
         }
 

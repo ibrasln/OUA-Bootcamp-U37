@@ -20,6 +20,7 @@ namespace Platformer.Player
         #endregion
 
         #region COMPONENTS
+        public Core Core { get; private set; } 
         public PlayerStateMachine StateMachine { get; private set; }
         public PlayerInputHandler InputHandler { get; private set; }
         public Animator Anim { get; private set; }
@@ -35,19 +36,12 @@ namespace Platformer.Player
         private Vector2 workspace;
         #endregion
 
-        #region CHECK VARIABLES
-        [SerializeField] private Transform groundCheckPosition;
-        [SerializeField] private Transform wallCheckPosition;
-        [SerializeField] private Transform ladderCheckPosition;
-        [SerializeField] private Transform ledgeCheckPosition;
-        [SerializeField] private Transform feetWallCheckPosition;
-        [SerializeField] private Transform ceilingCheckPosition;
-        #endregion
-
         #region UNITY CALLBACK FUNCTIONS
         private void Awake()
         {
+            Core = GetComponentInChildren<Core>();
             StateMachine = new();
+            
             InputHandler = GetComponent<PlayerInputHandler>();
             Anim = GetComponent<Animator>();
             RB = GetComponent<Rigidbody2D>();
@@ -85,24 +79,6 @@ namespace Platformer.Player
         #endregion
 
         #region SET FUNCTIONS
-        public void SetVelocityX(float xVelocity)
-        {
-            workspace.Set(xVelocity, RB.velocity.y);
-            RB.velocity = workspace;
-        }
-
-        public void SetVelocityY(float yVelocity)
-        {
-            workspace.Set(RB.velocity.x, yVelocity);
-            RB.velocity = workspace;
-        }
-
-        public void SetVelocityZero()
-        {
-            workspace.Set(0f, 0f);
-            RB.velocity = workspace;
-        }
-
         public void SetGravityScale(int scale)
         {
             RB.gravityScale = scale;
@@ -113,86 +89,10 @@ namespace Platformer.Player
         }
         #endregion
 
-        #region CHECK FUNCTIONS
-        public bool CheckOnGround()
-        {
-            return Physics2D.OverlapCircle(groundCheckPosition.position, playerData.groundCheckRadius, playerData.whatIsGround);
-        }
-
-        public bool CheckIsTouchingWall()
-        {
-            return Physics2D.Raycast(wallCheckPosition.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
-        }
-
-        public bool CheckIsFeetTouchingWall()
-        {
-            return Physics2D.Raycast(feetWallCheckPosition.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
-        }
-
-        private bool CheckIsLedgeDetected()
-        {
-            return !Physics2D.Raycast(ledgeCheckPosition.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
-        }
-
-        public bool CheckCanGrab()
-        {
-            return CheckIsTouchingWall() && CheckIsLedgeDetected();
-        }
-
-        public bool CheckIsTouchingLadder()
-        {
-            return Physics2D.OverlapCircle(ladderCheckPosition.position, playerData.ladderCheckRadius, playerData.whatIsLadder);
-        }
-
-        public bool CheckIsTouchingCeiling()
-        {
-            return true; //TODO: DONT FORGET TO COMPLETE IT
-        }
-
-        public void CheckIfShouldFlip(int xInput)
-        {
-            if (xInput != 0 && xInput != FacingDirection)
-                Flip();
-        }
-        #endregion
-
-        #region OTHER FUNCTIONS
-        private void Flip()
-        {
-            FacingDirection *= -1;
-            transform.Rotate(0.0f, 180.0f, 0f);
-        }
-
-        public Vector2 DetermineCornerPosition()
-        {
-            RaycastHit2D xHit = Physics2D.Raycast(wallCheckPosition.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
-            float xDist = xHit.distance;
-            workspace.Set((xDist + .05f) * FacingDirection, 0f);
-
-            RaycastHit2D yHit = Physics2D.Raycast(ledgeCheckPosition.position + (Vector3)workspace, Vector2.down, ledgeCheckPosition.position.y - wallCheckPosition.position.y, playerData.whatIsGround);
-            float yDist = yHit.distance;
-            workspace.Set(wallCheckPosition.position.x + (xDist * FacingDirection), ledgeCheckPosition.position.y - yDist);
-
-            return workspace;
-        }
-
-        #endregion
-
         #region ANIMATION TRIGGERS
         public void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
         public void AnimaionStartMovementTrigger() => StateMachine.CurrentState.AnimationStartMovementTrigger();
         public void AnimationStopMovementTrigger() => StateMachine.CurrentState.AnimationStopMovementTrigger();
-        #endregion
-
-        #region Gizmos
-        private void OnDrawGizmos()
-        {
-            Gizmos.DrawWireSphere(groundCheckPosition.position, playerData.groundCheckRadius);
-            Gizmos.DrawRay(wallCheckPosition.position, FacingDirection * playerData.wallCheckDistance * Vector2.right);
-            Gizmos.DrawRay(feetWallCheckPosition.position, FacingDirection * playerData.wallCheckDistance * Vector2.right);
-            Gizmos.DrawRay(ledgeCheckPosition.position, FacingDirection * playerData.wallCheckDistance * Vector2.right);
-            Gizmos.DrawWireSphere(ladderCheckPosition.position, playerData.ladderCheckRadius);
-        }
         #endregion
     }
 }

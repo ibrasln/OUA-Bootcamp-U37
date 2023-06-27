@@ -30,11 +30,11 @@ namespace Platformer.Player
         public override void DoChecks()
         {
             base.DoChecks();
-            onGround = player.CheckOnGround();
-            isTouchingWall = player.CheckIsTouchingWall();
-            isFeetTouchingWall = player.CheckIsFeetTouchingWall();
-            canGrab = player.CheckCanGrab();
-            isTouchingLadder = player.CheckIsTouchingLadder();
+            onGround = core.CollisionSenses.Ground;
+            isTouchingWall = core.CollisionSenses.WallFront;
+            //isFeetTouchingWall = core.CollisionSenses.CheckIsFeetTouchingWall();
+            //canGrab = core.CollisionSenses.CheckCanGrab();
+            //isTouchingLadder = core.CollisionSenses.CheckIsTouchingLadder();
         }
 
         public override void Enter()
@@ -85,8 +85,8 @@ namespace Platformer.Player
             }
             else
             {
-                player.CheckIfShouldFlip(xInput);
-                player.SetVelocityX(playerData.moveSpeedInAir * xInput);
+                core.Movement.CheckIfShouldFlip(xInput);
+                core.Movement.SetVelocityX(playerData.moveSpeedInAir * xInput);
             }
         }
 

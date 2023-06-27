@@ -21,13 +21,13 @@ namespace Platformer.Player
         public override void AnimationStartMovementTrigger()
         {
             base.AnimationStartMovementTrigger();
-            player.SetVelocityX(playerData.dashAttackMovementSpeed * player.FacingDirection);
+            core.Movement.SetVelocityX(playerData.dashAttackMovementSpeed * player.FacingDirection);
         }
 
         public override void AnimationStopMovementTrigger()
         {
             base.AnimationStopMovementTrigger();
-            player.SetVelocityZero();
+            core.Movement.SetVelocityZero();
         }
 
         public override void Enter()
