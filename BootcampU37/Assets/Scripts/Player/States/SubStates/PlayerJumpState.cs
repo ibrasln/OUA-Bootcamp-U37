@@ -18,7 +18,6 @@ namespace Platformer.Player
             core.Movement.SetVelocityY(playerData.jumpPower);
             jumpAmountLeft--;
             isAbilityDone = true;
-            Debug.Log("Player Jump State");
         }
 
         public bool CanJump()

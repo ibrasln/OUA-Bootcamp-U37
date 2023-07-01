@@ -27,7 +27,7 @@ namespace Platformer.Player
             base.DoChecks();
             onGround = core.CollisionSenses.Ground;
             isTouchingWall = core.CollisionSenses.WallFront;
-            //isTouchingLadder = player.CheckIsTouchingLadder();
+            isTouchingLadder = core.CollisionSenses.Ladder;
         }
 
         public override void Enter()
@@ -44,8 +44,6 @@ namespace Platformer.Player
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-
-            Debug.Log("Player Grounded State");
 
             xInput = player.InputHandler.NormInputX;
             yInput = player.InputHandler.NormInputY;

@@ -33,7 +33,7 @@ MonoBehaviour:
   ladderClimbSpeed: 7
   whatIsLadder:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   wallSlideSpeed: -5
   afterImagePrefab: {fileID: 0}
   distanceBetweenAfterImages: 1

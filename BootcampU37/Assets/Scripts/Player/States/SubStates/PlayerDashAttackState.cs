@@ -47,21 +47,21 @@ namespace Platformer.Player
             {
                 isAbilityDone = true;
             }
-            else
-            {
-                CheckIfShouldPlaceAfterImage();
-            }
+            //else
+            //{
+            //    CheckIfShouldPlaceAfterImage();
+            //}
         }
-        private void CheckIfShouldPlaceAfterImage()
-        {
-            if (Mathf.Abs(player.transform.position.x - lastAIPos.x) >= playerData.distanceBetweenAfterImages)
-                PlaceAfterImage();
-        }
+        //private void CheckIfShouldPlaceAfterImage()
+        //{
+        //    if (Mathf.Abs(player.transform.position.x - lastAIPos.x) >= playerData.distanceBetweenAfterImages)
+        //        PlaceAfterImage();
+        //}
 
-        private void PlaceAfterImage()
-        {
-            ObjectPoolManager.instance.GetObjectFromPool("AfterImage");
-            lastAIPos = player.transform.position;
-        }
+        //private void PlaceAfterImage()
+        //{
+        //    ObjectPoolManager.instance.GetObjectFromPool("AfterImage");
+        //    lastAIPos = player.transform.position;
+        //}
     }
 }

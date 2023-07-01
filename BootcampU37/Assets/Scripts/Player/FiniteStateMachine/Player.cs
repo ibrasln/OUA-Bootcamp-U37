@@ -61,6 +61,7 @@ namespace Platformer.Player
         private void Update()
         {
             StateMachine.CurrentState.LogicUpdate();
+            Debug.Log("CURRENT STATE: " + StateMachine.CurrentState);
         }
 
         private void FixedUpdate()

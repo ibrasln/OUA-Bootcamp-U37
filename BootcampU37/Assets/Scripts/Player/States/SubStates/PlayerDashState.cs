@@ -48,7 +48,7 @@ namespace Platformer.Player
             {
                core.Movement.SetVelocityX(playerData.dashSpeed * core.Movement.FacingDirection);
                 core.Movement.SetVelocityY(0f);
-                CheckIfShouldPlaceAfterImage();
+                //CheckIfShouldPlaceAfterImage();
             }
             
         }
@@ -58,17 +58,17 @@ namespace Platformer.Player
             base.PhysicsUpdate();
         }
 
-        private void CheckIfShouldPlaceAfterImage()
-        {
-            if (Mathf.Abs(player.transform.position.x - lastAIPos.x) >= playerData.distanceBetweenAfterImages)
-                PlaceAfterImage();
-        }
+        //private void CheckIfShouldPlaceAfterImage()
+        //{
+        //    if (Mathf.Abs(player.transform.position.x - lastAIPos.x) >= playerData.distanceBetweenAfterImages)
+        //        PlaceAfterImage();
+        //}
 
-        private void PlaceAfterImage()
-        {
-            ObjectPoolManager.instance.GetObjectFromPool("AfterImage");
-            lastAIPos = player.transform.position;
-        }
+        //private void PlaceAfterImage()
+        //{
+        //    ObjectPoolManager.instance.GetObjectFromPool("AfterImage");
+        //    lastAIPos = player.transform.position;
+        //}
 
         public bool CanDash()
         {

@@ -36,7 +36,7 @@ namespace Platformer.Player
 
         public virtual void LogicUpdate()
         {
-            Debug.Log("Player State");
+            
         }
 
         public virtual void PhysicsUpdate()

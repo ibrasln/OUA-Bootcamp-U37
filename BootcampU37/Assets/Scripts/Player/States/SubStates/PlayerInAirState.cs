@@ -50,7 +50,6 @@ namespace Platformer.Player
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            Debug.Log("In Air State");
 
             CheckCoyoteTime();
 
@@ -58,7 +57,7 @@ namespace Platformer.Player
             xInput = player.InputHandler.NormInputX;
             yInput = player.InputHandler.NormInputY;
             jumpInput = player.InputHandler.JumpInput;
-            //dashInput = player.InputHandler.DashInput;
+            dashInput = player.InputHandler.DashInput;
 
             if (onGround && core.Movement.CurrentVelocity.y < .1f)
             {
@@ -68,10 +67,10 @@ namespace Platformer.Player
             {   
                 stateMachine.ChangeState(player.JumpState);
             }
-            //else if (dashInput && player.DashState.CanDash())
-            //{
-            //    stateMachine.ChangeState(player.DashState);
-            //}
+            else if (dashInput && player.DashState.CanDash())
+            {
+                stateMachine.ChangeState(player.DashState);
+            }
             else if (isTouchingLadder && yInput == 1)
             {
                 stateMachine.ChangeState(player.LadderClimbState);

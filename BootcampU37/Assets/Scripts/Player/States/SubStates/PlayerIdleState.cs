@@ -27,7 +27,6 @@ namespace Platformer.Player
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            Debug.Log("Player Idle State");
 
             if (xInput != 0)
                 stateMachine.ChangeState(player.MoveState);
