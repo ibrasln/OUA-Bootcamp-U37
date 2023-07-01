@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CollisionSenses : CoreComponent
@@ -34,7 +32,7 @@ public class CollisionSenses : CoreComponent
     public float GroundCheckRadius { get => groundCheckRadius; set => groundCheckRadius = value; }
     public float WallCheckDistance { get => wallCheckDistance; set => wallCheckDistance = value; }
     public LayerMask WhatIsGround { get => whatIsGround; set => whatIsGround = value; }
-
+    public LayerMask WhatIsLadder { get => whatIsLadder; set => whatIsLadder = value; }
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform wallCheck;
@@ -44,8 +42,10 @@ public class CollisionSenses : CoreComponent
 
     [SerializeField] private float groundCheckRadius;
     [SerializeField] private float wallCheckDistance;
+    [SerializeField] private float ladderCheckRadius;
 
     [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private LayerMask whatIsLadder;
 
     #endregion
 
@@ -77,5 +77,14 @@ public class CollisionSenses : CoreComponent
     public bool WallBack
     {
         get => Physics2D.Raycast(WallCheck.position, Vector2.right * -Core.Movement.FacingDirection, wallCheckDistance, whatIsGround);
+    }
+
+    public bool Ladder
+    {
+        get => Physics2D.OverlapCircle(transform.position, ladderCheckRadius, whatIsLadder);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 }

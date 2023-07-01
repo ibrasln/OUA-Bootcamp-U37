@@ -43,7 +43,7 @@ namespace Platformer.Player
             jumpInput = player.InputHandler.JumpInput;
             yInput = player.InputHandler.NormInputY;
 
-            player.Anim.SetFloat("yVelocity", player.CurrentVelocity.y);
+            player.Anim.SetFloat("yVelocity", core.Movement.CurrentVelocity.y);
 
             // TODO: transform the position of player to ladder center
 

@@ -21,7 +21,7 @@ namespace Platformer.Player
         public override void AnimationStartMovementTrigger()
         {
             base.AnimationStartMovementTrigger();
-            core.Movement.SetVelocityX(playerData.dashAttackMovementSpeed * player.FacingDirection);
+            core.Movement.SetVelocityX(playerData.dashAttackMovementSpeed * core.Movement.FacingDirection);
         }
 
         public override void AnimationStopMovementTrigger()

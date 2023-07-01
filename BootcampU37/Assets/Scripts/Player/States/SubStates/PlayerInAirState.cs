@@ -34,7 +34,7 @@ namespace Platformer.Player
             isTouchingWall = core.CollisionSenses.WallFront;
             //isFeetTouchingWall = core.CollisionSenses.CheckIsFeetTouchingWall();
             //canGrab = core.CollisionSenses.CheckCanGrab();
-            //isTouchingLadder = core.CollisionSenses.CheckIsTouchingLadder();
+            isTouchingLadder = core.CollisionSenses.Ladder;
         }
 
         public override void Enter()
@@ -50,16 +50,17 @@ namespace Platformer.Player
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            Debug.Log("In Air State");
 
             CheckCoyoteTime();
 
-            player.Anim.SetFloat("yVelocity", player.CurrentVelocity.y);
+            player.Anim.SetFloat("yVelocity", core.Movement.CurrentVelocity.y);
             xInput = player.InputHandler.NormInputX;
             yInput = player.InputHandler.NormInputY;
             jumpInput = player.InputHandler.JumpInput;
-            dashInput = player.InputHandler.DashInput;
+            //dashInput = player.InputHandler.DashInput;
 
-            if (onGround && player.CurrentVelocity.y < .1f)
+            if (onGround && core.Movement.CurrentVelocity.y < .1f)
             {
                 stateMachine.ChangeState(player.IdleState);
             }
@@ -67,22 +68,22 @@ namespace Platformer.Player
             {   
                 stateMachine.ChangeState(player.JumpState);
             }
-            else if (dashInput && player.DashState.CanDash())
-            {
-                stateMachine.ChangeState(player.DashState);
-            }
+            //else if (dashInput && player.DashState.CanDash())
+            //{
+            //    stateMachine.ChangeState(player.DashState);
+            //}
             else if (isTouchingLadder && yInput == 1)
             {
                 stateMachine.ChangeState(player.LadderClimbState);
             }
-            else if (canGrab)
-            {
-                stateMachine.ChangeState(player.LedgeGrabState);
-            }
-            else if (isFeetTouchingWall && isTouchingWall && (player.CurrentVelocity.y < .1f))
-            {
-                stateMachine.ChangeState(player.WallSlideState);
-            }
+            //else if (canGrab)
+            //{
+            //    stateMachine.ChangeState(player.LedgeGrabState);
+            //}
+            //else if (isFeetTouchingWall && isTouchingWall && (core.Movement.CurrentVelocity.y < .1f))
+            //{
+            //    stateMachine.ChangeState(player.WallSlideState);
+            //}
             else
             {
                 core.Movement.CheckIfShouldFlip(xInput);

@@ -29,15 +29,15 @@ namespace Platformer.Player
         {
             base.LogicUpdate();
 
-            if (onGround && player.CurrentVelocity.y < .1f)
+            if (onGround && core.Movement.CurrentVelocity.y < .1f)
             {
                 stateMachine.ChangeState(player.IdleState);
             }
-            else if (jumpInput && player.JumpState.CanJump() && xInput == -player.FacingDirection)
+            else if (jumpInput && player.JumpState.CanJump() && xInput == -core.Movement.FacingDirection)
             {
                 stateMachine.ChangeState(player.JumpState);
             }
-            else if (!isFeetTouchingWall && player.CurrentVelocity.y < .1f)
+            else if (!isFeetTouchingWall && core.Movement.CurrentVelocity.y < .1f)
             {
                 stateMachine.ChangeState(player.InAirState);
             }

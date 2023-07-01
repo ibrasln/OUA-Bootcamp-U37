@@ -10,7 +10,7 @@ namespace Platformer.Player
 
         public override void AnimationStartMovementTrigger()
         {
-            core.Movement.SetVelocityX(playerData.attackMovementSpeed * player.FacingDirection);
+            core.Movement.SetVelocityX(playerData.attackMovementSpeed * core.Movement.FacingDirection);
         }
 
         public override void AnimationStopMovementTrigger()

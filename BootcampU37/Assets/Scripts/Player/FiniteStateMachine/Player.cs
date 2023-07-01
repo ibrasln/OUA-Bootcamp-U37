@@ -29,13 +29,6 @@ namespace Platformer.Player
         public PlayerDataSO playerData;
         #endregion
 
-        #region OTHER VARIABLES
-        public Vector2 CurrentVelocity { get; private set; }
-        public int FacingDirection { get; private set; }
-        
-        private Vector2 workspace;
-        #endregion
-
         #region UNITY CALLBACK FUNCTIONS
         private void Awake()
         {
@@ -63,12 +56,10 @@ namespace Platformer.Player
         private void Start()
         {
             StateMachine.Initialize(IdleState);
-            FacingDirection = 1;
         }
 
         private void Update()
         {
-            CurrentVelocity = RB.velocity;
             StateMachine.CurrentState.LogicUpdate();
         }
 
