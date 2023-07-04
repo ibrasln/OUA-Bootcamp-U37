@@ -30,4 +30,10 @@ public class Core : MonoBehaviour
         CollisionSenses = GetComponentInChildren<CollisionSenses>();
         Combat = GetComponentInChildren<Combat>();
     }
+
+    public void LogicUpdate()
+    {
+        Movement.LogicUpdate();
+        //Combat.LogicUpdate();
+    }
 }
