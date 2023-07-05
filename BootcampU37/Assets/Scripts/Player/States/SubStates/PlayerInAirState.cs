@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Platformer.Player
+namespace Player
 {
     public class PlayerInAirState : PlayerState
     {
@@ -53,7 +53,6 @@ namespace Platformer.Player
 
             CheckCoyoteTime();
 
-            player.Anim.SetFloat("yVelocity", core.Movement.CurrentVelocity.y);
             xInput = player.InputHandler.NormInputX;
             yInput = player.InputHandler.NormInputY;
             jumpInput = player.InputHandler.JumpInput;
@@ -87,6 +86,7 @@ namespace Platformer.Player
             {
                 core.Movement.CheckIfShouldFlip(xInput);
                 core.Movement.SetVelocityX(playerData.moveSpeedInAir * xInput);
+                player.Anim.SetFloat("yVelocity", core.Movement.CurrentVelocity.y);
             }
         }
 

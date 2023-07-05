@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Platformer.Manager
+namespace Manager
 {
     using Player;
 

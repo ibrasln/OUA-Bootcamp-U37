@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Platformer.Player
+namespace Player
 {
     public class PlayerGroundedState : PlayerState
     {

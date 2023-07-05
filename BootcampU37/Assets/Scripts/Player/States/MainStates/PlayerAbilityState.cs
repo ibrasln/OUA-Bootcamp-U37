@@ -1,4 +1,5 @@
-namespace Platformer.Player
+ 
+namespace Player
 {
     public class PlayerAbilityState : PlayerState
     {
@@ -17,6 +18,7 @@ namespace Platformer.Player
         {
             base.DoChecks();
             onGround = core.CollisionSenses.Ground;
+            isTouchingWall = core.CollisionSenses.WallCheck;
         }
 
         public override void Enter()

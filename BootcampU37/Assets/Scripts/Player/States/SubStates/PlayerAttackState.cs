@@ -1,4 +1,4 @@
-namespace Platformer.Player
+namespace Player
 {
     public class PlayerAttackState : PlayerAbilityState
     {

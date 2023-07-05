@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Platformer.Player
+namespace Player
 {
     public class PlayerLedgeGrabState : PlayerTouchingWallState
     {

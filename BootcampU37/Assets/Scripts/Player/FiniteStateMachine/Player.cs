@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Platformer.Player
+namespace Player
 {
     public class Player : MonoBehaviour
     {
@@ -61,6 +61,7 @@ namespace Platformer.Player
         private void Update()
         {
             StateMachine.CurrentState.LogicUpdate();
+            Core.LogicUpdate();
             Debug.Log("CURRENT STATE: " + StateMachine.CurrentState);
         }
 

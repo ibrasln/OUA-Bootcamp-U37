@@ -25,6 +25,7 @@ public class Movement : CoreComponent
     public void LogicUpdate()
     {
         CurrentVelocity = RB.velocity;
+        Debug.Log(CanSetVelocity);
     }
 
     #region Set Functions

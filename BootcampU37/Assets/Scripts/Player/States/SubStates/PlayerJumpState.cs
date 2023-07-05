@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace Platformer.Player
+namespace Player
 {
     public class PlayerJumpState : PlayerAbilityState
     {

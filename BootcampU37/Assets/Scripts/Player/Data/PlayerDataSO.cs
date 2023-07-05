@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Platformer.Player
+namespace Player
 {
     [CreateAssetMenu(fileName = "PlayerData", menuName = "Scriptable Objects/Player Data")]
     public class PlayerDataSO : ScriptableObject
@@ -17,6 +17,7 @@ namespace Platformer.Player
         [Space(6)]
         [Header("IN AIR")]
         public float coyoteTime = .2f;
+        public float variableJumpHeightMultiplier = .5f;
 
         [Space(6)]
         [Header("SLIDE")]

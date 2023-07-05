@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Platformer.Player
+namespace Player
 {
     public class PlayerInputHandler : MonoBehaviour
     {

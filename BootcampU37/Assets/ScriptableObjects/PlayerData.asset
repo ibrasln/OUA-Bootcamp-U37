@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   moveSpeedInAir: 7.5
-  jumpPower: 10
+  jumpPower: 15
   jumpAmount: 2
   coyoteTime: 0.2
-  slideSpeed: 20
+  slideSpeed: 13
   slideCooldown: 1
   slideTime: 0.3
-  dashSpeed: 25
+  dashSpeed: 17
   dashCooldown: 1
   dashTime: 0.3
   groundCheckRadius: 0.3
