@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public class EnemyState
+    public class State
     {
         protected FiniteStateMachine stateMachine;
         protected Entity entity;
@@ -14,7 +14,7 @@ namespace Enemy
 
         protected string animBoolName;
 
-        public EnemyState(Entity etity, FiniteStateMachine stateMachine, string animBoolName)
+        public State(Entity etity, FiniteStateMachine stateMachine, string animBoolName)
         {
             this.entity = etity;
             this.stateMachine = stateMachine;
@@ -25,13 +25,13 @@ namespace Enemy
         public virtual void Enter()
         {
             startTime = Time.time;
-            //entity.anim.SetBool(animBoolName, true);
+            entity.anim.SetBool(animBoolName, true);
             DoChecks();
         }
 
         public virtual void Exit()
         {
-            //entity.anim.SetBool(animBoolName, false);
+            entity.anim.SetBool(animBoolName, false);
         }
 
         public virtual void LogicUpdate()

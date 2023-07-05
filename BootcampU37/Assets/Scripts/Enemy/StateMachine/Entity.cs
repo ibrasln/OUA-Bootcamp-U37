@@ -8,34 +8,43 @@ namespace Enemy
     {
         public FiniteStateMachine stateMachine;
 
-        //public D_Entity entityData;
+        public D_Entity entityData;
 
         public Animator anim { get; private set; }
+        public int facingDirection { get; private set; }
+        public Rigidbody2D rb { get; private set; }
+
+
         //public AnimationToStatemachine atsm { get; private set; }
         public int lastDamageDirection { get; private set; }
         public Core Core { get; private set; }
+        public GameObject aliveGO { get; private set; }
 
         [SerializeField]
         private Transform wallCheck;
         [SerializeField]
         private Transform ledgeCheck;
-        [SerializeField]
+        /*[SerializeField]
         private Transform playerCheck;
         [SerializeField]
-        private Transform groundCheck;
+        private Transform groundCheck;*/
 
         private float currentHealth;
         private float currentStunResistance;
         private float lastDamageTime;
 
-        private Vector2 velocityWorkspace;
+        private Vector2 velocityWorkSpace;
 
         protected bool isStunned;
         protected bool isDead;
 
         public virtual void Awake()
         {
+            facingDirection = -1;
             Core = GetComponentInChildren<Core>();
+            aliveGO = GameObject.Find("Alive");
+
+            rb = aliveGO.GetComponent<Rigidbody2D>();
 
             //currentHealth = entityData.maxHealth;
             //currentStunResistance = entityData.stunResistance;
@@ -51,7 +60,7 @@ namespace Enemy
             //Core.LogicUpdate();
             stateMachine.CurrentState.LogicUpdate();
 
-            anim.SetFloat("yVelocity", Core.Movement.RB.velocity.y);
+            //anim.SetFloat("yVelocity", Core.Movement.RB.velocity.y);
 
             //if (Time.time >= lastDamageTime + entityData.stunRecoveryTime)
             //{
@@ -63,11 +72,22 @@ namespace Enemy
         {
             stateMachine.CurrentState.PhysicsUpdate();
         }
+        public virtual void SetVelocity(float velocity)
+        {
+            Debug.Log("girdi");
+            velocityWorkSpace.Set(facingDirection * velocity, rb.velocity.y);
+            rb.velocity = velocityWorkSpace;
+        }
 
-        //public virtual bool CheckPlayerInMinAgroRange()
-        //{
-        //    return Physics2D.Raycast(playerCheck.position, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer);
-        //}
+        public virtual void Flip()
+        {
+            facingDirection *= -1;
+            aliveGO.transform.Rotate(0, 180f, 0);
+        }
+        /*public virtual bool CheckPlayerInMinAgroRange()
+        {
+            return Physics2D.Raycast(playerCheck.position, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer);
+        }*/
 
         //public virtual bool CheckPlayerInMaxAgroRange()
         //{
@@ -78,11 +98,19 @@ namespace Enemy
         //{
         //    return Physics2D.Raycast(playerCheck.position, transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
         //}
+        public virtual bool CheckWall()
+        {
+            return Physics2D.Raycast(wallCheck.position, aliveGO.transform.right, entityData.wallCheckDistance, entityData.whatIsGround);
+        }
+        public virtual bool CheckLedge()
+        {
+            return Physics2D.Raycast(ledgeCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGround);
 
+        }
         public virtual void DamageHop(float velocity)
         {
-            velocityWorkspace.Set(Core.Movement.RB.velocity.x, velocity);
-            Core.Movement.RB.velocity = velocityWorkspace;
+            velocityWorkSpace.Set(Core.Movement.RB.velocity.x, velocity);
+            Core.Movement.RB.velocity = velocityWorkSpace;
         }
 
         //public virtual void ResetStunResistance()

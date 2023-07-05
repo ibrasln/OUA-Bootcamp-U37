@@ -2,17 +2,19 @@ namespace Enemy
 {
     public class FiniteStateMachine
     {
-        public EnemyState CurrentState { get; private set; }
+        public State CurrentState { get; private set; }
 
-        public void Initialize(EnemyState startingState)
+        public void Initialize(State startingState)
         {
             CurrentState = startingState;
             CurrentState.Enter();
         }
 
-        public void ChangeState(EnemyState newState)
+        public void ChangeState(State newState)
         {
-
+            CurrentState.Exit();
+            CurrentState = newState;
+            CurrentState.Enter();
         }
     }
 }
