@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ca208ead27211d4a883dc76d29ff60b, type: 3}
-  m_Name: WizardMoveData
+  m_Script: {fileID: 11500000, guid: 54c1b39c063dce44abfbce90e68ac38f, type: 3}
+  m_Name: WizardAttackData
   m_EditorClassIdentifier: 
-  movementSpeed: 3

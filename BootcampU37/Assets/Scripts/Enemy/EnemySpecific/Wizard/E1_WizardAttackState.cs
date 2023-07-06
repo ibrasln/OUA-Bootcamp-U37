@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 namespace Enemy
 {
-	public class E1_WizardIdleState : IdleState
+	public class E1_WizardAttackState : AttackState
 	{
 		private E1_Wizard enemy;
-		private bool isPlayerInMaxAgroRange;
-		public E1_WizardIdleState(Entity etity, FiniteStateMachine stateMachine, string animBoolName,D_IdleState stateData, E1_Wizard enemy) : base(etity, stateMachine, animBoolName,stateData)
+		private bool isPlayerInMinAgroRange;
+		public E1_WizardAttackState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_AttackState stateData,E1_Wizard enemy) : base(etity, stateMachine, animBoolName, stateData)
 		{
 			this.enemy = enemy;
 		}
@@ -16,7 +15,7 @@ namespace Enemy
 		public override void DoChecks()
 		{
 			base.DoChecks();
-			isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
+			isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
 		}
 
 		public override void Enter()
@@ -32,7 +31,7 @@ namespace Enemy
 		public override void LogicUpdate()
 		{
 			base.LogicUpdate();
-			if (isPlayerInMaxAgroRange)
+			if (!isPlayerInMinAgroRange)
 			{
 				stateMachine.ChangeState(enemy.playerDetectedState);
 			}

@@ -24,9 +24,9 @@ namespace Enemy
         private Transform wallCheck;
         [SerializeField]
         private Transform ledgeCheck;
-        /*[SerializeField]
-        private Transform playerCheck;
         [SerializeField]
+        private Transform playerCheck;
+        /*[SerializeField]
         private Transform groundCheck;*/
 
         private float currentHealth;
@@ -49,7 +49,7 @@ namespace Enemy
             //currentHealth = entityData.maxHealth;
             //currentStunResistance = entityData.stunResistance;
 
-            anim = GetComponent<Animator>();
+            anim = aliveGO.GetComponent<Animator>();
             //atsm = GetComponent<AnimationToStatemachine>();
 
             stateMachine = new FiniteStateMachine();
@@ -64,7 +64,7 @@ namespace Enemy
 
             //if (Time.time >= lastDamageTime + entityData.stunRecoveryTime)
             //{
-                //ResetStunResistance();
+            //ResetStunResistance();
             //}
         }
 
@@ -84,15 +84,15 @@ namespace Enemy
             facingDirection *= -1;
             aliveGO.transform.Rotate(0, 180f, 0);
         }
-        /*public virtual bool CheckPlayerInMinAgroRange()
+        public virtual bool CheckPlayerInMinAgroRange()
         {
-            return Physics2D.Raycast(playerCheck.position, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer);
-        }*/
+            return Physics2D.Raycast(playerCheck.position, aliveGO.transform.right, entityData.minAgroDistance, entityData.whatIsPlayer);
+        }
+        public virtual bool CheckPlayerInMaxAgroRange()
+        {
+            return Physics2D.Raycast(playerCheck.position, aliveGO.transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
 
-        //public virtual bool CheckPlayerInMaxAgroRange()
-        //{
-        //    return Physics2D.Raycast(playerCheck.position, transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
-        //}
+        }
 
         //public virtual bool CheckPlayerInCloseRangeAction()
         //{
@@ -113,23 +113,28 @@ namespace Enemy
             Core.Movement.RB.velocity = velocityWorkSpace;
         }
 
-        //public virtual void ResetStunResistance()
-        //{
-        //    isStunned = false;
-        //    currentStunResistance = entityData.stunResistance;
-        //}
+		//public virtual void ResetStunResistance()
+		//{
+		//    isStunned = false;
+		//    currentStunResistance = entityData.stunResistance;
+		//}
 
-        //public virtual void OnDrawGizmos()
-        //{
-        //    if (Core != null)
-        //    {
-        //        Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * Core.Movement.FacingDirection * entityData.wallCheckDistance));
-        //        Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
+		//public virtual void OnDrawGizmos()
+		//{
+		//    if (Core != null)
+		//    {
+		//        Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * Core.Movement.FacingDirection * entityData.wallCheckDistance));
+		//        Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
 
-        //        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.closeRangeActionDistance), 0.2f);
-        //        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.minAgroDistance), 0.2f);
-        //        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.maxAgroDistance), 0.2f);
-        //    }
-        //}
-    }
+		//        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.closeRangeActionDistance), 0.2f);
+		//        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.minAgroDistance), 0.2f);
+		//        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.maxAgroDistance), 0.2f);
+		//    }
+		//}
+		public virtual void OnDrawGizmos()
+		{
+            Gizmos.DrawLine(playerCheck.position, playerCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.maxAgroDistance));
+        }
+	}
+   
 }

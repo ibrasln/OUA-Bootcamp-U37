@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Enemy
-{
-	public class E1_WizardMoveState : MoveState
+
+namespace Enemy {
+	public class E1_WizardPlayerDetectedState : PlayerDetectedState
 	{
 		private E1_Wizard enemy;
-		public E1_WizardMoveState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_MoveState stateData,E1_Wizard enemy) : base(etity, stateMachine, animBoolName, stateData)
+		public E1_WizardPlayerDetectedState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_PlayerDetectedData stateData,E1_Wizard enemy) : base(etity, stateMachine, animBoolName, stateData)
 		{
 			this.enemy = enemy;
 		}
+
+		public override void DoChecks()
+		{
+			base.DoChecks();
+		}
+
 		public override void Enter()
 		{
 			base.Enter();
+			entity.SetVelocity(0f);
 		}
 
 		public override void Exit()
@@ -23,14 +30,13 @@ namespace Enemy
 		public override void LogicUpdate()
 		{
 			base.LogicUpdate();
+
 			if (isPlayerInMinAgroRange)
 			{
-				/*Debug.Log("detected");
-				stateMachine.ChangeState(enemy.playerDetectedState);*/
+				stateMachine.ChangeState(enemy.attackState);
 			}
-			else if (isDetectingWall || !isDetectingLedge)
+			else if (!isPlayerInMaxAgroRange)
 			{
-				enemy.idleState.SetFlipAfterIdle(true);
 				stateMachine.ChangeState(enemy.idleState);
 			}
 
@@ -39,7 +45,6 @@ namespace Enemy
 		public override void PhysicsUpdate()
 		{
 			base.PhysicsUpdate();
-
 		}
 	}
 }
