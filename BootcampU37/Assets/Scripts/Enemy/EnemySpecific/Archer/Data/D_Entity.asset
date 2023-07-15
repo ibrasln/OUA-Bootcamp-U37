@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52627199eccf4034cbf0955ddd20a185, type: 3}
-  m_Name: EntityData
+  m_Name: D_Entity
   m_EditorClassIdentifier: 
   wallCheckDistance: 0.3
   ledgeCheckDistance: 0.4
   maxAgroDistance: 1.3
-  minAgroDistance: 0.6
+  minAgroDistance: 0.3
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64

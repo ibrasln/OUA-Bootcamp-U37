@@ -40,7 +40,7 @@ namespace Enemy
 
         public virtual void Awake()
         {
-            facingDirection = -1;
+            facingDirection = 1;
             Core = GetComponentInChildren<Core>();
             aliveGO = GameObject.Find("Alive");
 
@@ -74,7 +74,6 @@ namespace Enemy
         }
         public virtual void SetVelocity(float velocity)
         {
-            Debug.Log("girdi");
             velocityWorkSpace.Set(facingDirection * velocity, rb.velocity.y);
             rb.velocity = velocityWorkSpace;
         }
