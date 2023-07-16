@@ -6,8 +6,7 @@ namespace Enemy
 	public class ArcherIdleState : IdleState
 	{
 		private E1_Archer enemy;
-		private bool isPlayerInMaxAgroRange;
-		private bool isPlayerInMinAgroRange;
+
 
 
 		public ArcherIdleState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_IdleState stateData,E1_Archer enemy) : base(etity, stateMachine, animBoolName, stateData)
@@ -17,8 +16,7 @@ namespace Enemy
 		public override void DoChecks()
 		{
 			base.DoChecks();
-			isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
-			isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+
 		}
 
 		public override void Enter()

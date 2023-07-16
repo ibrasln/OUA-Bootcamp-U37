@@ -11,6 +11,7 @@ namespace Enemy
 		protected float idleTime;
 		protected bool isIdleTimeOver;
 		protected bool isPlayerInMinAgroRange;
+		protected bool isPlayerInMaxAgroRange;
 
 		public IdleState(Entity etity, FiniteStateMachine stateMachine, string animBoolName,D_IdleState stateData) : base(etity, stateMachine, animBoolName)
 		{
@@ -19,7 +20,8 @@ namespace Enemy
 		public override void DoChecks()
 		{
 			base.DoChecks();
-			//isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+			isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+			isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
 		}
 
 		public override void Enter()

@@ -7,7 +7,7 @@ namespace Enemy
 	public class E1_WizardIdleState : IdleState
 	{
 		private E1_Wizard enemy;
-		private bool isPlayerInMaxAgroRange;
+	
 		public E1_WizardIdleState(Entity etity, FiniteStateMachine stateMachine, string animBoolName,D_IdleState stateData, E1_Wizard enemy) : base(etity, stateMachine, animBoolName,stateData)
 		{
 			this.enemy = enemy;
@@ -16,7 +16,6 @@ namespace Enemy
 		public override void DoChecks()
 		{
 			base.DoChecks();
-			isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
 		}
 
 		public override void Enter()
