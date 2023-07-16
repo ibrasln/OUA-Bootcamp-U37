@@ -21,6 +21,7 @@ namespace Enemy
 		public override void Enter()
 		{
 			base.Enter();
+			enemy.SetVelocity(0);
 		}
 
 		public override void Exit()

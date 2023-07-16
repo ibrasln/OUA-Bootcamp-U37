@@ -7,6 +7,8 @@ namespace Enemy
 	{
 		private E1_Archer enemy;
 		private bool isPlayerInMaxAgroRange;
+		private bool isPlayerInMinAgroRange;
+
 
 		public ArcherIdleState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_IdleState stateData,E1_Archer enemy) : base(etity, stateMachine, animBoolName, stateData)
 		{
@@ -16,6 +18,7 @@ namespace Enemy
 		{
 			base.DoChecks();
 			isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
+			isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
 		}
 
 		public override void Enter()
@@ -32,14 +35,16 @@ namespace Enemy
 		{
 			base.LogicUpdate();
 			Debug.Log(isPlayerInMaxAgroRange);
-			if (isPlayerInMaxAgroRange)
+			if (isPlayerInMinAgroRange)
 			{
-				Debug.Log("detected oldu");
+				stateMachine.ChangeState(enemy.attackState);
+			}
+			else if (isPlayerInMaxAgroRange)
+			{
 				stateMachine.ChangeState(enemy.playerDetectedState);
 			}
 			if (isIdleTimeOver)
 			{
-				Debug.Log("move oldu");
 				stateMachine.ChangeState(enemy.moveState);
 			}
 		}

@@ -10,6 +10,7 @@ namespace Enemy
 		protected bool isDetectingWall;
 		protected bool isDetectingLedge;
 		protected bool isPlayerInMinAgroRange;
+		protected bool isPlayerInMaxAgroRange;
 
 
 		public MoveState(Entity etity, FiniteStateMachine stateMachine, string animBoolName,D_MoveState stateData) : base(etity, stateMachine, animBoolName)
@@ -21,7 +22,8 @@ namespace Enemy
 			base.DoChecks();
 			isDetectingLedge = entity.CheckLedge();
 			isDetectingWall = entity.CheckWall();
-			//isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+			isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+			isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
 		}
 
 		public override void Enter()

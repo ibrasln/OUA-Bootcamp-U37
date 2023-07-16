@@ -26,6 +26,10 @@ namespace Enemy {
 			base.LogicUpdate();
 			if (isPlayerInMinAgroRange)
 			{
+				stateMachine.ChangeState(enemy.attackState);
+			}
+			else if (isPlayerInMaxAgroRange)
+			{
 				stateMachine.ChangeState(enemy.playerDetectedState);
 			}
 			if (isDetectingWall || !isDetectingLedge)
