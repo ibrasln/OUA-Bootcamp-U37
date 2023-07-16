@@ -40,7 +40,7 @@ namespace Enemy
 
         public virtual void Awake()
         {
-            facingDirection = 1;
+            facingDirection = -1;
             Core = GetComponentInChildren<Core>();
             aliveGO = GameObject.Find("Alive");
 
@@ -64,6 +64,7 @@ namespace Enemy
 
             //if (Time.time >= lastDamageTime + entityData.stunRecoveryTime)
             //{
+
             //ResetStunResistance();
             //}
         }
@@ -71,7 +72,9 @@ namespace Enemy
         public virtual void FixedUpdate()
         {
             stateMachine.CurrentState.PhysicsUpdate();
+
         }
+
         public virtual void SetVelocity(float velocity)
         {
             velocityWorkSpace.Set(facingDirection * velocity, rb.velocity.y);
@@ -104,7 +107,6 @@ namespace Enemy
         public virtual bool CheckLedge()
         {
             return Physics2D.Raycast(ledgeCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGround);
-
         }
         public virtual void DamageHop(float velocity)
         {
@@ -135,5 +137,4 @@ namespace Enemy
             Gizmos.DrawLine(playerCheck.position, playerCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.maxAgroDistance));
         }
 	}
-   
 }

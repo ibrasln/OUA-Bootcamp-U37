@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Enemy
@@ -9,6 +7,7 @@ namespace Enemy
     {
         public float wallCheckDistance = 0.3f;
         public float ledgeCheckDistance = 0.4f;
+
         public float maxAgroDistance = 1.3f;
         public float minAgroDistance = 0.3f;
 
@@ -16,4 +15,3 @@ namespace Enemy
         public LayerMask whatIsPlayer;
     }
 }
-
