@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 namespace Enemy {
-	public class ArcherMoveState : MoveState
+	public class WormMoveState : MoveState
 	{
-		private E1_Archer enemy;
-
-		public ArcherMoveState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_MoveState stateData,E1_Archer enemy) : base(etity, stateMachine, animBoolName, stateData)
+		private E_Worm enemy;
+		public WormMoveState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_MoveState stateData,E_Worm enemy) : base(etity, stateMachine, animBoolName, stateData)
 		{
 			this.enemy = enemy;
 		}
@@ -34,8 +33,6 @@ namespace Enemy {
 			}
 			if (isDetectingWall || !isDetectingLedge)
 			{
-				Debug.Log(isDetectingLedge);
-
 				enemy.idleState.SetFlipAfterIdle(true);
 				stateMachine.ChangeState(enemy.idleState);
 			}

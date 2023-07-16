@@ -134,6 +134,8 @@ namespace Enemy
 		//}
 		public virtual void OnDrawGizmos()
 		{
+            Gizmos.DrawLine(playerCheck.position, playerCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.wallCheckDistance));
+
             Gizmos.DrawLine(playerCheck.position, playerCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.maxAgroDistance));
         }
 	}

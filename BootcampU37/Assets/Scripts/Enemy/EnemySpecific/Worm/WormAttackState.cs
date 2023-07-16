@@ -1,19 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Enemy
-{
-	public class ArcherAttackState : AttackState
+namespace Enemy {
+	public class WormAttackState : AttackState
 	{
-		private E1_Archer enemy;
-		public ArcherAttackState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_AttackState stateData,E1_Archer enemy) : base(etity, stateMachine, animBoolName, stateData)
+		private E_Worm enemy;
+		public WormAttackState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_AttackState stateData,E_Worm enemy) : base(etity, stateMachine, animBoolName, stateData)
 		{
 			this.enemy = enemy;
 		}
-
 		public override void DoChecks()
 		{
 			base.DoChecks();
+			isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
 		}
 
 		public override void Enter()
