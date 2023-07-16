@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Player
 {
-    using Manager;
+    
 
     public class PlayerDashAttackState : PlayerAbilityState
     {
@@ -21,13 +21,13 @@ namespace Player
         public override void AnimationStartMovementTrigger()
         {
             base.AnimationStartMovementTrigger();
-            core.Movement.SetVelocityX(playerData.dashAttackMovementSpeed * core.Movement.FacingDirection);
+            player.SetVelocityX(playerData.dashAttackMovementSpeed * player.FacingDirection);
         }
 
         public override void AnimationStopMovementTrigger()
         {
             base.AnimationStopMovementTrigger();
-            core.Movement.SetVelocityZero();
+            player.SetVelocityZero();
         }
 
         public override void Enter()
@@ -47,21 +47,21 @@ namespace Player
             {
                 isAbilityDone = true;
             }
-            //else
-            //{
-            //    CheckIfShouldPlaceAfterImage();
-            //}
+            else
+            {
+                CheckIfShouldPlaceAfterImage();
+            }
         }
-        //private void CheckIfShouldPlaceAfterImage()
-        //{
-        //    if (Mathf.Abs(player.transform.position.x - lastAIPos.x) >= playerData.distanceBetweenAfterImages)
-        //        PlaceAfterImage();
-        //}
+        private void CheckIfShouldPlaceAfterImage()
+        {
+            if (Mathf.Abs(player.transform.position.x - lastAIPos.x) >= playerData.distanceBetweenAfterImages)
+                PlaceAfterImage();
+        }
 
-        //private void PlaceAfterImage()
-        //{
-        //    ObjectPoolManager.instance.GetObjectFromPool("AfterImage");
-        //    lastAIPos = player.transform.position;
-        //}
+        private void PlaceAfterImage()
+        {
+            ObjectPoolManager.instance.GetObjectFromPool("AfterImage");
+            lastAIPos = player.transform.position;
+        }
     }
 }

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Player
 {
     public class PlayerJumpState : PlayerAbilityState
@@ -13,9 +15,10 @@ namespace Player
         {
             base.Enter();
             player.InputHandler.UseJumpInput();
-            core.Movement.SetVelocityY(playerData.jumpPower);
+            player.SetVelocityY(playerData.jumpPower);
             jumpAmountLeft--;
             isAbilityDone = true;
+            Debug.Log(jumpAmountLeft);
         }
 
         public bool CanJump()

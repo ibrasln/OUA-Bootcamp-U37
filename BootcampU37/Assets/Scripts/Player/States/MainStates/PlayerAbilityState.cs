@@ -1,4 +1,3 @@
- 
 namespace Player
 {
     public class PlayerAbilityState : PlayerState
@@ -17,8 +16,7 @@ namespace Player
         public override void DoChecks()
         {
             base.DoChecks();
-            onGround = core.CollisionSenses.Ground;
-            isTouchingWall = core.CollisionSenses.WallCheck;
+            onGround = player.CheckOnGround();
         }
 
         public override void Enter()
@@ -39,7 +37,7 @@ namespace Player
 
             if (isAbilityDone)
             {
-                if (onGround && core.Movement.CurrentVelocity.y < .1f)
+                if (onGround && player.CurrentVelocity.y < .1f)
                 {
                     stateMachine.ChangeState(player.IdleState);
                 }

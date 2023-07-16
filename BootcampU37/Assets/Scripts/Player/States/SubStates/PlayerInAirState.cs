@@ -30,11 +30,11 @@ namespace Player
         public override void DoChecks()
         {
             base.DoChecks();
-            onGround = core.CollisionSenses.Ground;
-            isTouchingWall = core.CollisionSenses.WallFront;
-            //isFeetTouchingWall = core.CollisionSenses.CheckIsFeetTouchingWall();
-            //canGrab = core.CollisionSenses.CheckCanGrab();
-            isTouchingLadder = core.CollisionSenses.Ladder;
+            onGround = player.CheckOnGround();
+            isTouchingWall = player.CheckIsTouchingWall();
+            isFeetTouchingWall = player.CheckIsFeetTouchingWall();
+            canGrab = player.CheckCanGrab();
+            isTouchingLadder = player.CheckIsTouchingLadder();
         }
 
         public override void Enter()
@@ -53,12 +53,13 @@ namespace Player
 
             CheckCoyoteTime();
 
+            player.Anim.SetFloat("yVelocity", player.CurrentVelocity.y);
             xInput = player.InputHandler.NormInputX;
             yInput = player.InputHandler.NormInputY;
             jumpInput = player.InputHandler.JumpInput;
             dashInput = player.InputHandler.DashInput;
 
-            if (onGround && core.Movement.CurrentVelocity.y < .1f)
+            if (onGround && player.CurrentVelocity.y < .1f)
             {
                 stateMachine.ChangeState(player.IdleState);
             }
@@ -74,19 +75,18 @@ namespace Player
             {
                 stateMachine.ChangeState(player.LadderClimbState);
             }
-            //else if (canGrab)
-            //{
-            //    stateMachine.ChangeState(player.LedgeGrabState);
-            //}
-            //else if (isFeetTouchingWall && isTouchingWall && (core.Movement.CurrentVelocity.y < .1f))
-            //{
-            //    stateMachine.ChangeState(player.WallSlideState);
-            //}
+            else if (canGrab)
+            {
+                stateMachine.ChangeState(player.LedgeGrabState);
+            }
+            else if (isFeetTouchingWall && isTouchingWall && (player.CurrentVelocity.y < .1f))
+            {
+                stateMachine.ChangeState(player.WallSlideState);
+            }
             else
             {
-                core.Movement.CheckIfShouldFlip(xInput);
-                core.Movement.SetVelocityX(playerData.moveSpeedInAir * xInput);
-                player.Anim.SetFloat("yVelocity", core.Movement.CurrentVelocity.y);
+                player.CheckIfShouldFlip(xInput);
+                player.SetVelocityX(playerData.moveSpeedInAir * xInput);
             }
         }
 

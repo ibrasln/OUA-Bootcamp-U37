@@ -18,14 +18,14 @@ namespace Player
         public override void DoChecks()
         {
             base.DoChecks();
-            onGround = core.CollisionSenses.Ground;
-            //isTouchingLadder = player.CheckIsTouchingLadder();
+            onGround = player.CheckOnGround();
+            isTouchingLadder = player.CheckIsTouchingLadder();
         }
 
         public override void Enter()
         {
             base.Enter();
-            core.Movement.SetVelocityZero();
+            player.SetVelocityZero();
             player.SetGravityScale(0);
         }
 
@@ -43,7 +43,7 @@ namespace Player
             jumpInput = player.InputHandler.JumpInput;
             yInput = player.InputHandler.NormInputY;
 
-            player.Anim.SetFloat("yVelocity", core.Movement.CurrentVelocity.y);
+            player.Anim.SetFloat("yVelocity", player.CurrentVelocity.y);
 
             // TODO: transform the position of player to ladder center
 
@@ -57,8 +57,8 @@ namespace Player
             }
             else
             {
-                core.Movement.SetVelocityX(0);
-                core.Movement.SetVelocityY(playerData.ladderClimbSpeed * yInput);
+                player.SetVelocityX(0);
+                player.SetVelocityY(playerData.ladderClimbSpeed * yInput);
             }
         }
 

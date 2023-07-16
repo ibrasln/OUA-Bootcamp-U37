@@ -16,7 +16,7 @@ namespace Player
         public override void Enter()
         {
             base.Enter();
-            core.Movement.SetVelocityX(0f);
+            player.SetVelocityX(0f);
         }
 
         public override void Exit()

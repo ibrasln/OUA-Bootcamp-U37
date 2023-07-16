@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Player
 {
-    using Manager;
+    
 
     public class PlayerSlideState : PlayerGroundedState
     {
@@ -38,8 +38,8 @@ namespace Player
             }
             else
             {
-                core.Movement.SetVelocityX(playerData.slideSpeed * core.Movement.FacingDirection);
-                //CheckIfShouldPlaceAfterImage();
+                player.SetVelocityX(playerData.slideSpeed * player.FacingDirection);
+                CheckIfShouldPlaceAfterImage();
             }
         }
 
@@ -48,17 +48,17 @@ namespace Player
             base.PhysicsUpdate();
         }
 
-        //private void CheckIfShouldPlaceAfterImage()
-        //{
-        //    if (Mathf.Abs(player.transform.position.x - lastAIPos.x) >= playerData.distanceBetweenAfterImages)
-        //        PlaceAfterImage();
-        //}
+        private void CheckIfShouldPlaceAfterImage()
+        {
+            if (Mathf.Abs(player.transform.position.x - lastAIPos.x) >= playerData.distanceBetweenAfterImages)
+                PlaceAfterImage();
+        }
 
-        //private void PlaceAfterImage()
-        //{
-        //    ObjectPoolManager.instance.GetObjectFromPool("AfterImage");
-        //    lastAIPos = player.transform.position;
-        //}
+        private void PlaceAfterImage()
+        {
+            ObjectPoolManager.instance.GetObjectFromPool("AfterImage");
+            lastAIPos = player.transform.position;
+        }
 
         public bool CanSlide()
         {

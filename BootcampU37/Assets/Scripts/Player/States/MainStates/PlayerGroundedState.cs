@@ -25,9 +25,9 @@ namespace Player
         public override void DoChecks()
         {
             base.DoChecks();
-            onGround = core.CollisionSenses.Ground;
-            isTouchingWall = core.CollisionSenses.WallFront;
-            isTouchingLadder = core.CollisionSenses.Ladder;
+            onGround = player.CheckOnGround();
+            isTouchingWall = player.CheckIsTouchingWall();
+            isTouchingLadder = player.CheckIsTouchingLadder();
         }
 
         public override void Enter()
@@ -44,6 +44,8 @@ namespace Player
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+
+            Debug.Log("Player Grounded State");
 
             xInput = player.InputHandler.NormInputX;
             yInput = player.InputHandler.NormInputY;

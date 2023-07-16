@@ -10,12 +10,12 @@ namespace Player
 
         public override void AnimationStartMovementTrigger()
         {
-            core.Movement.SetVelocityX(playerData.attackMovementSpeed * core.Movement.FacingDirection);
+            player.SetVelocityX(playerData.attackMovementSpeed * player.FacingDirection);
         }
 
         public override void AnimationStopMovementTrigger()
         {
-            core.Movement.SetVelocityZero();
+            player.SetVelocityZero();
         }
 
         public override void AnimationFinishTrigger()
@@ -28,7 +28,7 @@ namespace Player
         {
             base.Enter();
             
-            core.Movement.SetVelocityZero();
+            player.SetVelocityZero();
 
             if (attackCounter >= playerData.attackAmount)
             {

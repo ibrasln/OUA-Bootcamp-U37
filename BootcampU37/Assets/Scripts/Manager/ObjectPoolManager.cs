@@ -1,68 +1,63 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Manager
+public class ObjectPoolManager : MonoBehaviour
 {
-    using Player;
+    public static ObjectPoolManager instance;
 
-    public class ObjectPoolManager : MonoBehaviour
+    #region Tooltip
+    [Tooltip("Populate this array with prefabs that you want to add to the pool, and specify the number of gameobjects to be created for each.")]
+    #endregion
+    [SerializeField] private Pool[] poolArray = null;
+
+    private Dictionary<string, Queue<GameObject>> poolDictionary = new();
+
+    [System.Serializable]
+    public struct Pool
     {
-        public static ObjectPoolManager instance;
+        public string name;
+        public int poolSize;
+        public GameObject prefab;
+    }
 
-        #region Tooltip
-        [Tooltip("Populate this array with prefabs that you want to add to the pool, and specify the number of gameobjects to be created for each.")]
-        #endregion
-        [SerializeField] private Pool[] poolArray = null;
+    private void Awake()
+    {
+        instance = this;
+    }
 
-        private Dictionary<string, Queue<GameObject>> poolDictionary = new();
-
-        [System.Serializable]
-        public struct Pool
+    private void Start()
+    {
+        for (int i = 0; i < poolArray.Length; i++)
         {
-            public string name;
-            public int poolSize;
-            public GameObject prefab;
+            CreatePool(poolArray[i].poolSize, poolArray[i].prefab);
         }
+    }
 
-        private void Awake()
+    private void CreatePool(int poolSize, GameObject prefab)
+    {
+        string name = prefab.name;
+
+        poolDictionary.Add(name, new Queue<GameObject>());
+
+        for (int i = 0; i < poolSize; i++)
         {
-            instance = this;
+            GameObject go = Instantiate(prefab, transform);
+            go.SetActive(false);
+            poolDictionary[name].Enqueue(go);
         }
+    }
 
-        private void Start()
+    public GameObject GetObjectFromPool(string poolName)
+    {
+        if (poolDictionary.ContainsKey(poolName))
         {
-            for (int i = 0; i < poolArray.Length; i++)
-            {
-                CreatePool(poolArray[i].poolSize, poolArray[i].prefab);
-            }
-        }
+            GameObject go = poolDictionary[poolName].Dequeue();
+            go.SetActive(true);
 
-        private void CreatePool(int poolSize, GameObject prefab)
-        {
-            string name = prefab.name;
-
-            poolDictionary.Add(name, new Queue<GameObject>());
-
-            for (int i = 0; i < poolSize; i++)
-            {
-                GameObject go = Instantiate(prefab, transform);
-                go.SetActive(false);
-                poolDictionary[name].Enqueue(go);
-            }
-        }
-
-        public GameObject GetObjectFromPool(string poolName)
-        {
-            if (poolDictionary.ContainsKey(poolName))
-            {
-                GameObject go = poolDictionary[poolName].Dequeue();
-                go.SetActive(true);
-
-                poolDictionary[poolName].Enqueue(go);
+            poolDictionary[poolName].Enqueue(go);
                 
-                return go;
-            }
-            return null;
+            return go;
         }
+        return null;
     }
 }

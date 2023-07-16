@@ -4,7 +4,6 @@ namespace Player
 {
     public class PlayerState 
     {
-        protected Core core;
         protected Player player;
         protected PlayerStateMachine stateMachine;
         protected PlayerDataSO playerData;
@@ -18,7 +17,6 @@ namespace Player
             this.stateMachine = stateMachine;
             this.playerData = playerData;
             this.animBoolName = animBoolName;
-            core = player.Core;
         }
 
         public virtual void Enter()
@@ -36,7 +34,7 @@ namespace Player
 
         public virtual void LogicUpdate()
         {
-            
+            Debug.Log("Player State");
         }
 
         public virtual void PhysicsUpdate()

@@ -16,7 +16,7 @@ namespace Player
         public override void Enter()
         {
             base.Enter();
-            core.Movement.SetVelocityX(0);
+            player.SetVelocityZero();
         }
 
         public override void Exit()
@@ -27,6 +27,7 @@ namespace Player
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            Debug.Log("Player Idle State");
 
             if (xInput != 0)
                 stateMachine.ChangeState(player.MoveState);

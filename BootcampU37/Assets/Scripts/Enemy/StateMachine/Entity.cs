@@ -17,7 +17,6 @@ namespace Enemy
 
         //public AnimationToStatemachine atsm { get; private set; }
         public int lastDamageDirection { get; private set; }
-        public Core Core { get; private set; }
         public GameObject aliveGO { get; private set; }
 
         [SerializeField]
@@ -40,8 +39,7 @@ namespace Enemy
 
         public virtual void Awake()
         {
-            facingDirection = -1;
-            Core = GetComponentInChildren<Core>();
+            facingDirection = 1;
             aliveGO = GameObject.Find("Alive");
 
             rb = aliveGO.GetComponent<Rigidbody2D>();
@@ -108,35 +106,26 @@ namespace Enemy
         {
             return Physics2D.Raycast(ledgeCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGround);
         }
-        public virtual void DamageHop(float velocity)
+        //public virtual void DamageHop(float velocity)
+        //{
+        //    velocityWorkSpace.Set(Core.Movement.RB.velocity.x, velocity);
+        //    Core.Movement.RB.velocity = velocityWorkSpace;
+        //}
+
+        //public virtual void ResetStunResistance()
+        //{
+        //    isStunned = false;
+        //    currentStunResistance = entityData.stunResistance;
+        //}
+
+        public virtual void OnDrawGizmos()
         {
-            velocityWorkSpace.Set(Core.Movement.RB.velocity.x, velocity);
-            Core.Movement.RB.velocity = velocityWorkSpace;
-        }
+            //Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * Core.Movement.FacingDirection * entityData.wallCheckDistance));
+            Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
 
-		//public virtual void ResetStunResistance()
-		//{
-		//    isStunned = false;
-		//    currentStunResistance = entityData.stunResistance;
-		//}
-
-		//public virtual void OnDrawGizmos()
-		//{
-		//    if (Core != null)
-		//    {
-		//        Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * Core.Movement.FacingDirection * entityData.wallCheckDistance));
-		//        Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
-
-		//        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.closeRangeActionDistance), 0.2f);
-		//        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.minAgroDistance), 0.2f);
-		//        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.maxAgroDistance), 0.2f);
-		//    }
-		//}
-		public virtual void OnDrawGizmos()
-		{
-            Gizmos.DrawLine(playerCheck.position, playerCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.wallCheckDistance));
-
-            Gizmos.DrawLine(playerCheck.position, playerCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.maxAgroDistance));
+            //Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.closeRangeActionDistance), 0.2f);
+            //Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.minAgroDistance), 0.2f);
+            //Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.maxAgroDistance), 0.2f);
         }
 	}
 }

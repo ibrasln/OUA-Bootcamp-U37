@@ -17,7 +17,6 @@ namespace Player
         [Space(6)]
         [Header("IN AIR")]
         public float coyoteTime = .2f;
-        public float variableJumpHeightMultiplier = .5f;
 
         [Space(6)]
         [Header("SLIDE")]

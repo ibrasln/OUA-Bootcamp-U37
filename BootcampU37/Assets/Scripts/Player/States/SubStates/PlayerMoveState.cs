@@ -25,8 +25,8 @@ namespace Player
         {
             base.LogicUpdate();
 
-            core.Movement.SetVelocityX(playerData.moveSpeed * xInput);
-            core.Movement.CheckIfShouldFlip(xInput);
+            player.SetVelocityX(playerData.moveSpeed * xInput);
+            player.CheckIfShouldFlip(xInput);
 
             if (xInput == 0)
                 stateMachine.ChangeState(player.IdleState);

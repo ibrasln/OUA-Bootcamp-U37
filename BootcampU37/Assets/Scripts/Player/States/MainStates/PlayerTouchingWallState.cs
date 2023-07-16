@@ -22,8 +22,8 @@ namespace Player
         public override void DoChecks()
         {
             base.DoChecks();
-            onGround = core.CollisionSenses.Ground;
-            isTouchingWall = core.CollisionSenses.WallFront;
+            onGround = player.CheckOnGround();
+            isTouchingWall = player.CheckIsTouchingWall();
         }
 
         public override void Enter()
