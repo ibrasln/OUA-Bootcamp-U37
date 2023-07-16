@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: D_Entity
   m_EditorClassIdentifier: 
   wallCheckDistance: 0.3
-  ledgeCheckDistance: 0.4
+  ledgeCheckDistance: 0.5
   maxAgroDistance: 6.3
   minAgroDistance: 4.8
   whatIsGround:

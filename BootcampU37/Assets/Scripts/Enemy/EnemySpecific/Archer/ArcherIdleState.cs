@@ -32,7 +32,7 @@ namespace Enemy
 		public override void LogicUpdate()
 		{
 			base.LogicUpdate();
-			Debug.Log(isPlayerInMaxAgroRange);
+			//Debug.Log(isPlayerInMaxAgroRange);
 			if (isPlayerInMinAgroRange)
 			{
 				stateMachine.ChangeState(enemy.attackState);

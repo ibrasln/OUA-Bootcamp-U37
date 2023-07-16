@@ -40,7 +40,7 @@ namespace Enemy
         public virtual void Awake()
         {
             facingDirection = 1;
-            aliveGO = GameObject.Find("Alive");
+            aliveGO = transform.GetChild(0).gameObject;
 
             rb = aliveGO.GetComponent<Rigidbody2D>();
 

@@ -32,13 +32,17 @@ namespace Enemy {
 			{
 				stateMachine.ChangeState(enemy.playerDetectedState);
 			}
-			if (isDetectingWall || !isDetectingLedge)
+			else if (isDetectingWall || !isDetectingLedge)
 			{
 				Debug.Log(isDetectingLedge);
 
 				enemy.idleState.SetFlipAfterIdle(true);
 				stateMachine.ChangeState(enemy.idleState);
 			}
+			else
+			{
+                entity.SetVelocity(stateData.movementSpeed);
+            }
 
 		}
 

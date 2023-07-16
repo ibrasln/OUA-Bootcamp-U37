@@ -26,5 +26,11 @@ namespace Enemy {
 			moveState = new ArcherMoveState(this, stateMachine, "move", moveStateData, this);
 			stateMachine.Initialize(moveState);
 		}
+
+		public override void Update()
+		{
+			base.Update();
+			Debug.Log(stateMachine.CurrentState);
+		}
 	}
 }
