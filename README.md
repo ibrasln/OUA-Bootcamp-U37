@@ -122,14 +122,12 @@ Sprint Retrospective:
  -Zamansal uygunluk durumundaki gözden kaçmalar en aza indirilerek daha aktif hatırlatılmalı.
 
 # Sprint 3
-Sprint Notları: Bu sprint oyun içeriğiyle ilgili kararlar değişti ve sadeleştirilmeye gidildi. İlk spirintte yapılanların aynıları tekrar yapılacak.
-Elemental Monk 25 (bardent'tan state machine): Bu task, Elemental Monk adlı bir karakterin tasarımının ve programlanmasının yapılmasını içerir. Bardent'tan state machine ile birlikte çalışacak şekilde karakterin animasyonları, hareketleri ve yetenekleri oluşturulur.
-
-GothicVania Town boss ile savaş mekanı 10: Bu task, GothicVania adlı bir kasabada geçen ve bir boss ile savaş mekanını içeren bir bölümün tasarlanması ve programlanmasıyla ilgilidir. Boss karakterinin animasyonları, saldırıları, zorluk seviyesi ve mekanın tasarımı bu task kapsamında gerçekleştirilir.
-
-En az 1 düşman (referans -> bardent'tan state machine) 10: Bu task, oyunda en az bir düşman karakterinin tasarımını ve programlamasını içerir. Bardent'tan state machine ile uyumlu bir şekilde düşmanın animasyonları, hareketleri, saldırıları ve davranışları oluşturulur.
-
-
+Sprint Notları: Bu sprint oyun içeriğiyle ilgili kararlar değişti ve sadeleştirilmeye gidildi. 
+Müzik ve ses efektleri bulundu. Uygulandı.
+Boss ve main characterler yazıldı. 
+Level design ve game design tamamlandı.
+3 farklı düşman oluşturuldu.
+Ana menü buton animasyonları DoTween eklentisi ile tamamlandı.
 
 Daily Scrum: Daily Scrum toplantılarının zamansal sebeplerden ötürü Whatsapp üzerinden yapılmasına karar verilmiştir.
 
