@@ -13,5 +13,6 @@ namespace Enemy
 
         public LayerMask whatIsGround;
         public LayerMask whatIsPlayer;
+        public LayerMask whatIsWall;
     }
 }

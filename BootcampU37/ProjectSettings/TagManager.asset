@@ -15,10 +15,10 @@ TagManager:
   - Player
   - Ladder
   - Boss
-  - 
-  - 
-  - 
-  - 
+  - Confiner
+  - Camera
+  - Wall
+  - Enemy
   - 
   - 
   - 
@@ -38,11 +38,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Background
     uniqueID: 1849177175
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Foreground
     uniqueID: 1088059837

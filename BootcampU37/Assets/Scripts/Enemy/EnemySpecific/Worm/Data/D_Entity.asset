@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52627199eccf4034cbf0955ddd20a185, type: 3}
   m_Name: D_Entity
   m_EditorClassIdentifier: 
-  wallCheckDistance: 0.3
+  wallCheckDistance: 0.5
   ledgeCheckDistance: 0.4
   maxAgroDistance: 5.2
   minAgroDistance: 1.1
@@ -22,3 +22,6 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 4096

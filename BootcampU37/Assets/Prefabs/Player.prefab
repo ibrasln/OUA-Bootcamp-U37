@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1805778679885950245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8835312888174538587}
+  m_Layer: 7
+  m_Name: AttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8835312888174538587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805778679885950245}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.27, y: -0.46, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5843630265673177861}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5843630265648503783
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,6 +104,7 @@ Transform:
   - {fileID: 5843630265730701197}
   - {fileID: 5843630265648503782}
   - {fileID: 5843630265866772820}
+  - {fileID: 8835312888174538587}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -115,7 +147,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1100610461
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 5
   m_Sprite: {fileID: -3318188226485093758, guid: ae72133dacba6ec4eb33ecde48f50e56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -173,12 +205,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: ef00cf561f8ee2847b5e93506f90df58, type: 2}
+  fadeScreen: {fileID: 0}
   groundCheckPosition: {fileID: 5843630265935028067}
   wallCheckPosition: {fileID: 5843630266455832890}
   ladderCheckPosition: {fileID: 5843630265648503782}
   ledgeCheckPosition: {fileID: 5843630265986625496}
   feetWallCheckPosition: {fileID: 5843630265866772820}
   ceilingCheckPosition: {fileID: 5843630265730701197}
+  attackPosition: {fileID: 8835312888174538587}
 --- !u!50 &5843630265673177865
 Rigidbody2D:
   serializedVersion: 4
@@ -213,8 +247,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.18272936, y: -0.3443644}
-  m_Size: {x: 0.8044369, y: 2.0210502}
+  m_Offset: {x: -0.18272936, y: -0.29581332}
+  m_Size: {x: 0.8044369, y: 1.9239483}
   m_Direction: 0
 --- !u!114 &5843630265673177866
 MonoBehaviour:
@@ -396,7 +430,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5843630265935028064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.204, y: -1.26, z: 0}
+  m_LocalPosition: {x: -0.204, y: -1.114, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

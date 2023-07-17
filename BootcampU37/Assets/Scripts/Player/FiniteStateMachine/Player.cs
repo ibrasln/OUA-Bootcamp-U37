@@ -1,4 +1,7 @@
+using DG.Tweening;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Player
 {
@@ -33,6 +36,10 @@ namespace Player
         public int FacingDirection { get; private set; }
         
         private Vector2 workspace;
+
+        private int currentHealth;
+
+        [SerializeField] CanvasGroup fadeScreen;
         #endregion
 
         #region CHECK VARIABLES
@@ -42,6 +49,7 @@ namespace Player
         [SerializeField] private Transform ledgeCheckPosition;
         [SerializeField] private Transform feetWallCheckPosition;
         [SerializeField] private Transform ceilingCheckPosition;
+        [SerializeField] private Transform attackPosition; 
         #endregion
 
         #region UNITY CALLBACK FUNCTIONS
@@ -70,6 +78,7 @@ namespace Player
         {
             StateMachine.Initialize(IdleState);
             FacingDirection = 1;
+            currentHealth = 3;
         }
 
         private void Update()
@@ -81,6 +90,14 @@ namespace Player
         private void FixedUpdate()
         {
             StateMachine.CurrentState.PhysicsUpdate();
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if(collision.CompareTag("Finish"))
+            {
+                StartCoroutine(GameOverRoutine());
+            }
         }
         #endregion
 
@@ -157,6 +174,14 @@ namespace Player
         #endregion
 
         #region OTHER FUNCTIONS
+
+        private IEnumerator GameOverRoutine()
+        {
+            fadeScreen.DOFade(1, 1);
+            yield return new WaitForSeconds(1);
+            SceneManager.LoadScene("MainMenuScene");
+        }
+
         private void Flip()
         {
             FacingDirection *= -1;
@@ -176,6 +201,25 @@ namespace Player
             return workspace;
         }
 
+        public void TakeDamage()
+        {
+            currentHealth--;
+            if (currentHealth <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        public void GiveDamage()
+        {
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPosition.position, playerData.attackRadius, playerData.whatIsEnemy);
+
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                Destroy(enemy.transform.parent.gameObject);
+            }
+        }
+
         #endregion
 
         #region ANIMATION TRIGGERS
@@ -192,6 +236,7 @@ namespace Player
             Gizmos.DrawRay(feetWallCheckPosition.position, FacingDirection * playerData.wallCheckDistance * Vector2.right);
             Gizmos.DrawRay(ledgeCheckPosition.position, FacingDirection * playerData.wallCheckDistance * Vector2.right);
             Gizmos.DrawWireSphere(ladderCheckPosition.position, playerData.ladderCheckRadius);
+            Gizmos.DrawWireSphere(attackPosition.position, playerData.attackRadius);
         }
         #endregion
     }

@@ -63,5 +63,7 @@ namespace Player
         public int attackAmount = 2;
         public float attackMovementSpeed = 2.5f;
         public float dashAttackMovementSpeed = 10f;
+        public float attackRadius = .5f;
+        public LayerMask whatIsEnemy;
     }
 }
