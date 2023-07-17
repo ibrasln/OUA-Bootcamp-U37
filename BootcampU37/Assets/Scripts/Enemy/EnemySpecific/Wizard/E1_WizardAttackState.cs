@@ -6,7 +6,6 @@ namespace Enemy
 	public class E1_WizardAttackState : AttackState
 	{
 		private E1_Wizard enemy;
-		private bool isPlayerInMinAgroRange;
 		public E1_WizardAttackState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_AttackState stateData,E1_Wizard enemy) : base(etity, stateMachine, animBoolName, stateData)
 		{
 			this.enemy = enemy;
@@ -15,7 +14,6 @@ namespace Enemy
 		public override void DoChecks()
 		{
 			base.DoChecks();
-			isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
 		}
 
 		public override void Enter()

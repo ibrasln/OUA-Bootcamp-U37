@@ -17,7 +17,7 @@ namespace Enemy {
 		public override void Enter()
 		{
 			base.Enter();
-			enemy.SetVelocity(3.8f);
+			enemy.SetVelocity(4.1f);
 		}
 
 		public override void Exit()
@@ -28,13 +28,14 @@ namespace Enemy {
 		public override void LogicUpdate()
 		{
 			base.LogicUpdate();
-			if (!isPlayerInMaxAgroRange)
-			{
-				stateMachine.ChangeState(enemy.moveState);
-			}
+
 			if (isPlayerInMinAgroRange)
 			{
 				stateMachine.ChangeState(enemy.attackState);
+			}
+			else if (!isPlayerInMaxAgroRange)
+			{
+				stateMachine.ChangeState(enemy.moveState);
 			}
 		}
 
